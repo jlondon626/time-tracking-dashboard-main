@@ -2,8 +2,17 @@
 
 $breakpoints: (
     'mobile': 375px,
+    'tablet': 768px,
     'desktop': 1440px
 );
+
+@mixin breakpoint($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $value) {
+        @content;
+    }
+}
 
 // Colors
 
@@ -71,12 +80,24 @@ main {
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    width: 100%;
     gap: 1.5rem;
-
-    max-width: 70rem;    
     
+    @include breakpoint(mobile) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        
+        width: 90%;
+    }
+
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        max-width: 70rem;
+    }
+
     margin-inline: 2rem;
 }
 
@@ -86,8 +107,10 @@ article {
 }
 
 .profile-card {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
+    @include breakpoint(mobile) {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
 
     display: flex;
     flex-direction: column;
@@ -103,6 +126,7 @@ article {
     padding: 1.5rem;
 
     flex: 1;
+    width: 100%;
 
     background-color: $purple-600;
 
@@ -119,24 +143,52 @@ article {
     
     p {
         color: $navy-200;
-        font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+        font-size: 1rem;
+        @include breakpoint(mobile) {
+            font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1.5rem);
+        }
+        @include breakpoint(tablet) {
+            font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+        }
     }
 }
 
 h1 {
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    
+    font-size: clamp(2rem, 1rem + 10vw, 4rem);
+    @include breakpoint(mobile) {
+        font-size: clamp(1.5rem, 1.5rem + 3vw, 3rem);
+    }
+    @include breakpoint(tablet) {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
     font-weight: map-get($font-weights, light);
     margin-top: 0.5rem;
 }
 
 h2 {
-    font-size: clamp(0.5rem, 2vw, 1rem);
+    font-size: 1.25rem;
+    @include breakpoint(mobile) {
+        font-size: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+    }
+
+    @include breakpoint(tablet) {
+        font-size: clamp(0.5rem, 2vw, 1rem);
+    }
     font-weight: map-get($font-weights, medium);
 }
 
 .previous {
     color: $navy-200;
-    font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+    font-size: clamp(0.75rem, 0.5rem + 2.5vw, 1.25rem);
+
+    @include breakpoint(mobile) {
+        font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1.5rem);
+    }
+
+    @include breakpoint(tablet) {
+        font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+    }
 }
 
 .timeframe {
@@ -157,7 +209,18 @@ button {
     border: none;
 
     color: $navy-200;
-    font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+
+    font-size: clamp(1rem, 0.75rem + 2vw, 1.25rem);
+
+    @include breakpoint(mobile) {
+        font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1.5rem);
+    }
+
+
+    @include breakpoint(tablet) {
+        font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+    }
+
     font-weight: map-get($font-weights, light);
 
     text-align: left;
@@ -192,7 +255,7 @@ button {
     &__content {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
 
         flex: 1;
 
@@ -213,6 +276,18 @@ button {
 
         button img {
             display: block;
+        }
+    }
+
+    &__hours {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include breakpoint(mobile) {
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
         }
     }
 }
