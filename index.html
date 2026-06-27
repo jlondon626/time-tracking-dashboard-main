@@ -8,6 +8,8 @@
 
   <title>Frontend Mentor | Time tracking dashboard</title>
 
+  <script src="./assets/js/index.js" defer></script>
+
 </head>
 <body>
   <main>
@@ -21,12 +23,12 @@
           </div>
         </section>
         <section class="timeframe">
-          <button class="daily" aria-label="View daily report">Daily</button>
-          <button class="weekly" aria-label="View weekly report">Weekly</button>
-          <button class="monthly" aria-label="View monthly report">Monthly</button>
+          <button class="daily" data-timeframe="daily" aria-label="View daily report">Daily</button>
+          <button class="weekly" data-timeframe="weekly" aria-label="View weekly report">Weekly</button>
+          <button class="monthly" data-timeframe="monthly" aria-label="View monthly report">Monthly</button>
         </section>
       </article>
-      <article class="time-tracking time-tracking-work">
+      <!-- <article class="time-tracking time-tracking-work">
         <img src="assets/images/icon-work.svg" alt="">
         <div class="time-tracking__content">
           <div class="time-tracking__header">
@@ -103,7 +105,7 @@
             <p class="previous">Previous - 1hr</p>
           </div>
         </div>
-      </article>
+      </article> -->
     </section>
   </main>
 </body>
