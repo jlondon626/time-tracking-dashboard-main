@@ -65,6 +65,11 @@ h1 {
   margin-top: 0.5rem;
 }
 
+h2 {
+  font-size: clamp(0.5rem, 2vw, 1rem);
+  font-weight: 500;
+}
+
 .previous {
   color: hsl(236, 100%, 87%);
   font-size: clamp(0.5rem, 0.25rem + 1vw, 18px);
