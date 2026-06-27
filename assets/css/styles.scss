@@ -1,0 +1,220 @@
+// Breakpoints
+
+$breakpoints: (
+    'mobile': 375px,
+    'desktop': 1440px
+);
+
+// Colors
+
+// Primary
+
+$purple-600: hsl(246, 80%, 60%);
+
+$orange-300: hsl(15, 100%, 70%);
+$blue-300: hsl(195, 74%, 62%);
+$pink-400: hsl(348, 100%, 68%);
+$green-400: hsl(145, 58%, 55%);
+$purple-700: hsl(264, 64%, 52%);
+$yellow-300: hsl(43, 84%, 65%);
+
+$article-colors: (
+    work: $orange-300,
+    play: $blue-300,
+    study: $pink-400,
+    exercise: $green-400,
+    social: $purple-700,
+    self-care: $yellow-300
+);
+
+// Neutral
+
+$navy-950: hsl(226, 43%, 10%);
+$navy-900: hsl(235, 46%, 20%);
+$purple-500: hsl(235, 45%, 61%);
+$navy-200: hsl(236, 100%, 87%);
+
+// Typography
+
+// Body Copy
+
+$font-size: 18px; // card titles e.g. Work, Play
+
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+$font-family: 'Rubik', sans-serif;
+$font-weights: (
+    light:300,
+    regular: 400,
+    medium: 500
+);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-color: $navy-950;
+}
+
+main {
+    min-height: 100vh;
+    
+    display: grid;
+    place-items: center;
+    
+    color: white;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+
+    max-width: 70rem;    
+    
+    margin-inline: 2rem;
+}
+
+article {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.profile-card {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background-color: $navy-900;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 1.5rem;
+
+    flex: 1;
+
+    background-color: $purple-600;
+
+    border-radius: 1rem;
+
+    img {
+        border: 3px solid white;
+        border-radius: 50%;
+
+        width: 4rem;
+        height: 4rem;
+    }
+
+    
+    p {
+        color: $navy-200;
+        font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+    }
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: map-get($font-weights, light);
+    margin-top: 0.5rem;
+}
+
+.previous {
+    color: $navy-200;
+    font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+}
+
+.timeframe {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+
+    flex: 0 0 auto;
+
+    padding-block: 1.5rem;
+
+}
+
+button {
+
+    background-color: transparent;
+    border: none;
+
+    color: $navy-200;
+    font-size: clamp(0.5rem, 0.25rem + 1vw, $font-size);
+    font-weight: map-get($font-weights, light);
+
+    text-align: left;
+
+    margin-inline-start: 1.5rem;
+
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.time-tracking {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    min-height: 16rem;
+
+    position: relative;
+    overflow: hidden;
+
+    padding-top: 3.5rem;
+
+    > img {
+        position: absolute;
+        top: -0.5rem;
+        right: 0.5rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        flex: 1;
+
+        position: relative;
+        z-index: 1;
+
+        border-radius: 1rem;
+
+        background-color: $navy-900;
+        padding: 1.5rem;
+
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button img {
+            display: block;
+        }
+    }
+}
+
+
+@each $key, $value in $article-colors {
+    .time-tracking-#{nth($key, 1)} {
+        background-color: $value;
+    }
+}
