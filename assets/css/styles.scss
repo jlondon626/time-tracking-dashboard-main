@@ -81,19 +81,16 @@ main {
 .dashboard {
     display: grid;
     grid-template-columns: 1fr;
-    width: 100%;
+    width: min(100% - 2rem, 70rem);
     gap: 1.5rem;
     
-    @include breakpoint(mobile) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(2, 1fr);        
         width: 90%;
     }
 
-    @include breakpoint(tablet) {
+    @include breakpoint(desktop) {
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 1fr);
 
         max-width: 70rem;
     }
@@ -292,9 +289,6 @@ button {
     }
 }
 
-
-@each $key, $value in $article-colors {
-    .time-tracking-#{nth($key, 1)} {
-        background-color: $value;
-    }
+.time-tracking-#{key} {
+    background-color: $value;
 }

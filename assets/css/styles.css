@@ -19,20 +19,18 @@ main {
 .dashboard {
   display: grid;
   grid-template-columns: 1fr;
-  width: 100%;
+  width: min(100% - 2rem, 70rem);
   gap: 1.5rem;
-}
-@media (min-width: 375px) {
-  .dashboard {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    width: 90%;
-  }
 }
 @media (min-width: 768px) {
   .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+  }
+}
+@media (min-width: 1440px) {
+  .dashboard {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     max-width: 70rem;
   }
 }
