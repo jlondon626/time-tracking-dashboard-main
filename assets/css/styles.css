@@ -240,4 +240,8 @@ button:hover {
 
 .time-tracking-self-care {
   background-color: hsl(43, 84%, 65%);
+}
+
+.active {
+  color: white;
 }/*# sourceMappingURL=styles.css.map */

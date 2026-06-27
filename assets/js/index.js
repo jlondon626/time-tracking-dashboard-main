@@ -1,6 +1,14 @@
 let selectedTimeFrame = "weekly"
 let dashboardData = []
 
+const dashboard = document.querySelector(".dashboard")
+
+const previousLabels = {
+    daily: "Yesterday",
+    weekly: "Last Week",
+    monthly: "Last Month"
+}
+
 fetch("data.json")
     .then((response) => {
         if(!response.ok) {
@@ -10,7 +18,10 @@ fetch("data.json")
     })
     .then((data) => {
         dashboardData = data;
-        UpdateDOM(selectedTimeFrame)
+        renderDashboard(selectedTimeFrame)
+    })
+    .catch((error) => {
+        console.log(error)
     });
     
 const removeArticles = () => {
@@ -20,7 +31,7 @@ const removeArticles = () => {
     });
 }
 
-const appendItem = (item, timeframePeriod) => {
+const createTimeTrackingCard = (item, timeframePeriod) => {
     const timeTrackingContainer = document.createElement("article");
     const itemSlug = item.title.toLowerCase().replace(/\s+/g, "-");
 
@@ -36,19 +47,19 @@ const appendItem = (item, timeframePeriod) => {
     </div>
     <div class="time-tracking__hours">
     <h1 class="current">${item.timeframes[timeframePeriod].current}hrs</h1>
-    <p class="previous">Previous - ${item.timeframes[timeframePeriod].previous}hrs</p>
+    <p class="previous">${previousLabels[timeframePeriod]} - ${item.timeframes[timeframePeriod].previous}hrs</p>
     </div>
     </div>
     </article>
     `;
     
-    document.querySelector(".dashboard").appendChild(timeTrackingContainer);
+    dashboard.appendChild(timeTrackingContainer);
 }
 
-function UpdateDOM(timeFrame) {
+function renderDashboard(timeFrame) {
         removeArticles();
         for (const item of dashboardData) {
-            appendItem(item, timeFrame)
+            createTimeTrackingCard(item, timeFrame)
         }
     }
 
@@ -62,6 +73,6 @@ timeframeButtons.forEach((timeFrameButton) => {
 
         timeFrameButton.classList.add('active');
         selectedTimeFrame = timeFrameButton.dataset.timeframe;
-        UpdateDOM(selectedTimeFrame);
+        renderDashboard(selectedTimeFrame);
     })
 });
