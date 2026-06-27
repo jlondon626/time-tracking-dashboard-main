@@ -128,12 +128,12 @@ h2 {
 }
 @media (min-width: 375px) {
   .previous {
-    font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1.5rem);
+    font-size: clamp(1rem, 0.5rem + 1.5vw, 1.5rem);
   }
 }
 @media (min-width: 768px) {
   .previous {
-    font-size: clamp(0.5rem, 0.25rem + 1vw, 18px);
+    font-size: clamp(0.75rem, 0.5rem + 1vw, 18px);
   }
 }
 
@@ -154,12 +154,12 @@ button {
 }
 @media (min-width: 375px) {
   button {
-    font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1.5rem);
+    font-size: clamp(1rem, 0.75rem + 1.5vw, 1.5rem);
   }
 }
 @media (min-width: 768px) {
   button {
-    font-size: clamp(0.5rem, 0.25rem + 1vw, 18px);
+    font-size: clamp(1rem, 0.5rem + 1vw, 2rem);
   }
 }
 button {
